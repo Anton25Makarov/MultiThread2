@@ -1,6 +1,7 @@
 package com.epam.multithread.entities;
 
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class Train implements Runnable {
@@ -46,5 +47,25 @@ public class Train implements Runnable {
                 ", stationTo='" + stationTo + '\'' +
                 ", trainDirection=" + trainDirection +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Train train = (Train) o;
+        return id == train.id &&
+                Objects.equals(stationFrom, train.stationFrom) &&
+                Objects.equals(stationTo, train.stationTo) &&
+                trainDirection == train.trainDirection;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, stationFrom, stationTo, trainDirection);
     }
 }
